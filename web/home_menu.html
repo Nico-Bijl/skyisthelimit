@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>movie genres</title>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<!-- Normal css -->
+<link rel="stylesheet" href="main_sub_styles.css">
+
+<!-- script carousel -->
+<script>
+	
+	$('#myCarousel').carousel({
+  , pause: 'hover'
+});
+	
+$('.carousel .item').each(function(){
+    var next = $(this);
+    var last;
+    for (var i=0;i<5;i++) {
+        next=next.next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        
+        last=next.children(':first-child').clone().appendTo($(this));
+    }
+    last.addClass('rightest');
+ 
+});
+	</script>
+
+</head>
+<!-- / script carousel -->
+
+
+<!-- Body -->
+<!-- background -->
+
+<body style="background: url(./img/beach_menu.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;">
+ <!-- / background -->
+
+  
+    
+<!-- Navigation -->
+<nav class="navbar default navbar-fixed-top col-md-offset-0 col-md-12 col-lg-12 col-lg-offset-0" style="background-color:#FFFFFF; border-bottom: 3px solid #C9309C;">
+  <div class="container-fluid"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" >
+            <a class="navbar-brand"><img src="./img/logo_belle.png" alt="Belle AIR" style="width:150px;"> </a></div>
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 50px">
+        </ul>
+  </div>
+</nav>
+<!-- /Navigation -->
+
+<!-- plane -->
+
+<div class="container" style="margin-top: 150px;">
+
+      <div class="row">
+           <div class="plane">
+          <div class="col-md-4 col-lg-2"></div>
+          <div class="text-center col-lg-offset-7 col-md-3 col-md-offset-5 col-sm-4 col-sm-offset-8 col-lg-3 col-xs-9 col-xs-offset-3"> <img src="img/plane.png" class="img-responsive moviestitle" alt="Responsive image" style="padding-right: 1em "></div>
+        </div>
+  </div>
+  </div>
+<!-- /plane -->
+
+
+<!-- carousel -->
+<div class="container-fluid">
+   <div class="row justify-content-xs-center">
+    	</div>
+    <div class="col-xs-12 col-centered hidden-lg hidden-md">
+        <div class="carousel slide " id="myCarousel" >
+          <div class="carousel-inner" >
+  		
+      <div class="item active" > <a href="movies_genres.html"><img src="img/icon/menu_movies.png" style="padding-left: 50px;padding-right: 50px; " onmouseover="this.src='img/icon_hover/menu_movies_hover.png'" onmouseout="this.src='img/icon/menu_movies.png'"/></a></div>
+       
+       <div class="item" > <a href="games.html"><img src="img/icon/menu_games.png" style="padding-left: 50px;padding-right: 50px;" onmouseover="this.src='img/icon_hover/menu_games_hover.png'" onmouseout="this.src='img/icon/menu_games.png'"/></a> </div>
+       
+       <div class="item"><a href="flight_form.html"><img src="img/icon/menu_flight_info.png" style="padding-left: 50px;padding-right: 50px;"  onmouseover="this.src='img/icon_hover/menu_flight_info_hover.png'" onmouseout="this.src='img/icon/menu_flight_info.png'"/></a> </div>
+       
+       <div class="item"> <a href="internet.html"><img src="img/icon/menu_internet.png" style="padding-left: 50px;padding-right: 50px;" onmouseover="this.src='img/icon_hover/menu_internet_hover.png'" onmouseout="this.src='img/icon/menu_internet.png'"/></a> </div>
+       
+       <div class="item"> <a href="music_genres.html"><img src="img/icon/menu_music.png" style="padding-left: 50px;padding-right: 50px;" onmouseover="this.src='img/icon_hover/menu_music_hover.png'" onmouseout="this.src='img/icon/menu_music.png'"/></a> </div>
+       
+	</div>
+	 </div>
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+        </div>
+    	
+    </div>
+
+</div>
+
+<!-- / carousel -->
+
+
+
+<!-- icons -->
+<div class="container" style="margin-top: 200px;">
+<div class="row-centered">
+
+ <ul class="icons hidden-xs hidden-sm">
+  		
+      <div class="col-lg-2 col-md-2 col-sm-2 col-centered"> <a href="movies_genres.html"><img src="img/icon/menu_movies.png" style="max-width: 160px;" onmouseover="this.src='img/icon_hover/menu_movies_hover.png'" onmouseout="this.src='img/icon/menu_movies.png'"/></a></div>
+       
+       <div class="col-lg-2 col-md-2 col-sm-2 col-centered" > <a href="games.html"><img src="img/icon/menu_games.png" style="max-width: 160px;" onmouseover="this.src='img/icon_hover/menu_games_hover.png'" onmouseout="this.src='img/icon/menu_games.png'"/></a> </div>
+       
+       <div class="col-lg-2 col-md-2 col-sm-2 col-centered"><a href="flight_form.html"><img src="img/icon/menu_flight_info.png" style="max-width: 160px;" onmouseover="this.src='img/icon_hover/menu_flight_info_hover.png'" onmouseout="this.src='img/icon/menu_flight_info.png'"/></a> </div>
+       
+       <div class="col-lg-2 col-md-2 col-sm-2 col-centered"> <a href="internet.html"><img src="img/icon/menu_internet.png" style="max-width: 160px;" onmouseover="this.src='img/icon_hover/menu_internet_hover.png'" onmouseout="this.src='img/icon/menu_internet.png'"/></a> </div>
+       
+       <div class="col-lg-2 col-md-2 col-sm-2 col-centered"> <a href="music_genres.html"><img src="img/icon/menu_music.png" style="max-width: 160px;" onmouseover="this.src='img/icon_hover/menu_music_hover.png'" onmouseout="this.src='img/icon/menu_music.png'"/></a> </div>
+       
+	</ul>
+
+</div>
+
+</div>
+<!-- icons -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="js/jquery-1.11.3.min.js"></script> 
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="js/bootstrap.js"></script>
+</body>
+</html>
