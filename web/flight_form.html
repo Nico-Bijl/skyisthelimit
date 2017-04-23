@@ -11,7 +11,6 @@
 <!-- Normal css -->
 <link rel="stylesheet" href="main_sub_styles.css">
 
-
 </head>
 
 <!-- Body -->
@@ -67,7 +66,31 @@
 	</div>
 </header>
 
- 
+<!-- Start Flight tracking API JSON data load into HTML table-->
+<script>
+    $.getJSON(http://flightxml.flightaware.com/json/FlightXML2/Enroute?airport=EHAM&filter=%27%27&howMany=10&offset=0,
+function (data) {
+    var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + data[i].ident + "</td>");
+        tr.append("<td>" + data[i].aircrafttype + "</td>");
+        tr.append("<td>" + data[i].actualdeparturetime + "</td>");
+        tr.append("<td>" + data[i].estimatedarrivaltime + "</td>");
+        tr.append("<td>" + data[i].filed_departuretime + "</td>");
+        tr.append("<td>" + data[i].origin + "</td>");
+        tr.append("<td>" + data[i].destination + "</td>");
+        tr.append("<td>" + data[i].originName + "</td>");
+        tr.append("<td>" + data[i].originCity + "</td>");
+        tr.append("<td>" + data[i].destinationName + "</td>");
+        tr.append("<td>" + data[i].destinationCity + "</td>");      
+        $('table').append(tr);
+    }
+});
+</script>
+<!--End Flight tracking API JSON data load into HTML table--> 
+
+
 <div class="row">
   <div class="col-md-1 col-lg-4 col-lg-offset-4">
   
