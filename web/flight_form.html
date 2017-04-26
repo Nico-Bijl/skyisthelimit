@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,12 +9,15 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- Normal css -->
 <link rel="stylesheet" href="main_sub_styles.css">
-
+<!-- 
+ Possible solutions for problem with table responsiveness:
+- https://elvery.net/demo/responsive-tables/ 
+- https://www.sitepoint.com/responsive-data-tables-comprehensive-list-solutions/ -->
 </head>
 
 <!-- Body -->
 <!-- Navigation -->
-
+<body>
 <nav class="navbar default navbar-fixed-top col-md-offset-0 col-md-12 col-lg-12 col-lg-offset-0">
   <div class="container-fluid"> 
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -24,7 +26,7 @@
       <a class="navbar-brand"><img src="./img/logo_belle.png" alt="Belle AIR" style="width:150px;"> </a></div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right" style="margin-right: 50px"->
+      <ul class="nav navbar-nav navbar-right" style="margin-right: 50px;">
         <li><a href="home_menu.html">Home</a> </li>
         <li><a href="movies_genres.html">Movies</a> </li>
         <li><a href="games.html">Games</a> </li>
@@ -43,83 +45,119 @@
 </nav>
 <!-- /Navigation --> 
 
-
 <!-- Header -->
 <header>
-
-<div class="page-header col-lg-offset-0 col-lg-12">
-    
+  <div class="page-header col-lg-offset-0 col-lg-12">
     <div class="row">
-    <div class="col-md-12 padding-5">
+      <div class="col-md-12 padding-5">
         <div class="row">
-    <div class="col-md-4 col-lg-2"></div>
-    <div class="col-sm-12 text-center col-lg-offset-1 col-lg-3">
-			<img src="img/icon/menu_flight_info.png" class="img-responsive moviestitle" alt="Responsive image" style="padding-left: 1em "></div>
-</div>
-        <div class="row">
-			<div class="col-lg-4 col-lg-offset-3">
-			  <h1 style="color: white; text-align: right; padding-right: 2em">&nbsp;</h1>
-			</div>
+          <div class="col-md-4 col-lg-2"></div>
+          <div class="col-sm-12 text-center col-lg-offset-1 col-lg-3"> <img src="img/icon/menu_flight_info.png" class="img-responsive moviestitle" alt="Responsive image" style="padding-left: 1em "></div>
         </div>
+        <div class="row">
+          <div class="col-lg-4 col-lg-offset-3">
+            <h1 style="color: white; text-align: right; padding-right: 2em">&nbsp;</h1>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>    
-	</div>
+  </div>
 </header>
 
-<!-- Start Flight tracking API JSON data load into HTML table-->
-<script>
-    $.getJSON(http://nicobijl:0ea32a93f4389c4c347ad4fb59fb1889b9657fd1@flightxml.flightaware.com/json/FlightXML2/Enroute?airport=EHAM&filter=''&howMany=10&offset=0,
-function (data) {
-    var tr;
-    for (var i = 0; i < data.length; i++) {
-        tr = $('<tr/>');
-        tr.append("<td>" + data[i].ident + "</td>");
-        tr.append("<td>" + data[i].aircrafttype + "</td>");
-        tr.append("<td>" + data[i].actualdeparturetime + "</td>");
-        tr.append("<td>" + data[i].estimatedarrivaltime + "</td>");
-        tr.append("<td>" + data[i].filed_departuretime + "</td>");
-        tr.append("<td>" + data[i].origin + "</td>");
-        tr.append("<td>" + data[i].destination + "</td>");
-        tr.append("<td>" + data[i].originName + "</td>");
-        tr.append("<td>" + data[i].originCity + "</td>");
-        tr.append("<td>" + data[i].destinationName + "</td>");
-        tr.append("<td>" + data[i].destinationCity + "</td>");      
-        $('table').append(tr);
-    }
-});
-</script>
-<!--End Flight tracking API JSON data load into HTML table--> 
+<!-- HTML table-->
+<div class="container" >
+  <div class="panel col-lg-12 col-md-12 col-sm-12" style="background-color: rgba(255,255,255,0.00); ">
 
-
-<div class="row">
-  <div class="col-md-1 col-lg-4 col-lg-offset-4">
-  
-<section id="contact" class="white-bg">
-          <div class="container">
-            <div class="row">
-              
-              <div class="text-center col-xs-10 col-xs-offset-1 col-sm-11 col-md-9 col-lg-offset-0 col-lg-7">
-                <form>
-                 
-                 <div class="group col-lg-8 " style="text-align: left">
-                   <h3 class="title-small"> <span>Your flight number</span></h3>
-                   <p class="content-detail">&nbsp;</p>
-                   <p class="content-detail">To track your flight we need your flight number.&nbsp;You can find your flight number on your ticket.&nbsp;Please enter your flight number below.</p>
-                 </div>
-					<div class="group col-lg-8 " >
-                    <input required="" type="text"><span class="highlight"></span><span class="bar"></span><label>Please insert your Flight number here</label>
-                  <div class=""> </div>
-						
-                  </div>
-                  
-                  <div class="group col-lg-8 ">
-                  <input id="sendMessage" name="sendMessage" type="submit" value="Flight Information">
-				  </div>
-                </form>
-              </div>
-				</section>
-  </div>
+        <div class="group col-lg-12" style="margin-bottom: 20px;">
+          <h3 class="title-small"> <span>Your flight number</span></h3>
+<p class="content-detail">To track your flight we need your flight number. Choose your flight from the table and enter your flight number below the table.</p>
 </div>
+         <table class="table table-resposive table-hover table-condensed">
+      <thead>
+        <tr>
+          <th >FLIGHT NUMBER</th>
+          <th>TYPE OF AIRPLANE</th>
+          <th>DEPARTURE (FILED)</th>
+          <th>DEPARTURE (ACTUAL)</th>
+          <th>ARRIVAL (EXPECTED)</th>
+          <th>ORIGIN</th>
+          <th>Country</th>
+          <th>CITY</th>
+          <th>DESTINATION</th>
+          <th>NAME</th>
+          <th>CITY</th>
+        </tr>
+      </thead>
+      
+      <!-- tbody is what needs to load automaticaly, for now examples:-->
+      <tbody>
+        <tr>
+          <td>(XR 2600)</td>
+          <td>(Boing)</td>
+          <td>(20.30)</td>
+          <td>(20.40)</td>
+          <td>(02.40)</td>
+          <td>(AMS)</td>
+          <td>(NETHERLANDS)</td>
+          <td>(AMSTERDAM)</td>
+          <td>(BIK)</td>
+          <td>(BKINI ISLANDS)</td>
+          <td>(UMPA LUMPA)</td>
+        </tr>
+        <tr>
+          <td>(XR 2600)</td>
+          <td>(Boing)</td>
+          <td>(20.30)</td>
+          <td>(20.40)</td>
+          <td>(02.40)</td>
+          <td>(AMS)</td>
+          <td>(NETHERLANDS)</td>
+          <td>(AMSTERDAM)</td>
+          <td>(BIK)</td>
+          <td>(BKINI ISLANDS)</td>
+          <td>(UMPA LUMPA)</td>
+        </tr>
+        <tr>
+          <td>(XR 2600)</td>
+          <td>(Boing)</td>
+          <td>(20.30)</td>
+          <td>(20.40)</td>
+          <td>(02.40)</td>
+          <td>(AMS)</td>
+          <td>(NETHERLANDS)</td>
+          <td>(AMSTERDAM)</td>
+          <td>(BIK)</td>
+          <td>(BKINI ISLANDS)</td>
+          <td>(UMPA LUMPA)</td>
+        </tr>
+      </tbody>
+      <!-- / tbody is what needs to load in-->
+    </table>
+  </div>
+	</div>
+
+
+<!-- / HTML table-->
+
+<section id="contact" >
+<div class="container">
+    <div class="text-center">
+      <form>
+        
+        <div class="group  col-lg-12" >
+          <input required="" type="text">
+          <span class="highlight"></span><span class="bar"></span>
+          <label>Please insert your Flight number here</label>
+          <div class=""> </div>
+        </div>
+        <div class="group  col-lg-12">
+          <input id="sendMessage" name="sendMessage" type="submit" value="Flight Information">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 
 <!-- FOOTER -->
 <section>
@@ -130,13 +168,37 @@ function (data) {
       </div>
     </footer>
   </div>
-  </div>
 </section>
 <!-- / FOOTER --> 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="js/jquery-1.11.3.min.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
-<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.js"></script> 
+
+<!-- Start Flight tracking API JSON data load into HTML table--> 
+<script>
+    $.getJSON(http://nicobijl:0ea32a93f4389c4c347ad4fb59fb1889b9657fd1@flightxml.flightaware.com/json/FlightXML2/Enroute?airport=EHAM&filter=''&howMany=10&offset=0,
+function (data) {
+    var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + data[i].ident + "</td>");
+        tr.append("<td>" + data[i].aircrafttype + "</td>");
+		tr.append("<td>" + data[i].filed_departuretime + "</td>");
+        tr.append("<td>" + data[i].actualdeparturetime + "</td>");
+        tr.append("<td>" + data[i].estimatedarrivaltime + "</td>");
+        tr.append("<td>" + data[i].origin + "</td>");
+        tr.append("<td>" + data[i].originName + "</td>");
+        tr.append("<td>" + data[i].originCity + "</td>");
+		tr.append("<td>" + data[i].destination + "</td>");
+        tr.append("<td>" + data[i].destinationName + "</td>");
+        tr.append("<td>" + data[i].destinationCity + "</td>");      
+        $('table').append(tr);
+    }
+});
+</script> 
+<!--End Flight tracking API JSON data load into HTML table-->
+
 </body>
 </html>

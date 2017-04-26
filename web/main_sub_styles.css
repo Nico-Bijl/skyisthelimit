@@ -27,6 +27,32 @@ background-color: #6E4497; (purple)
 
 /*---------- / headers -----------*/
 
+/*---------- table -----------*/
+
+
+th {
+	background-color: #C9309C;	
+	color: #ffffff;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+	background-color: #ffffff;
+	color: #C9309C;
+
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+	text-align: center;
+	font-weight: 200;
+
+}
+
+/*---------- / table -----------*/
+
+
 
 /*---------- pink button -----------*/
 
@@ -264,13 +290,7 @@ h2 {
 }
 
 /*---------- flight info form -----------*/
-#contact {
-	padding: 50px 0 50px 0;
-}
 
-#contact form {
-	margin-top: 25px;
-}
 
 #contact .slider-masks {
 	background-color: rgba(129, 129, 129, 0.7);
@@ -282,7 +302,7 @@ h2 {
 }
 
 #contact .group {
-	margin-bottom: 45px;
+	margin-bottom: 25px;
 }
 
 #contact input, #contact textarea {
@@ -314,11 +334,9 @@ h2 {
 	-webkit-transition: 0.2s ease all;
 }
 
-#contact input {
-}
 
  #contact input:focus ~ label, #contact input:valid ~ label, #contact textarea:focus ~ label, #contact textarea:valid ~ label {
- top: -25px;
+ top: -15px;
  font-size: 12px;
 }
 
@@ -385,6 +403,14 @@ h2 {
 	background: #C9309C;
 	color: #ffffff;
 }
+
+.group {
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+
+}
+
 /*---------- modal -----------*/
 
 .modal-backdrop {
@@ -457,3 +483,6 @@ h2 {
 	margin: 0px;
 }
 }
+		
+	
+
