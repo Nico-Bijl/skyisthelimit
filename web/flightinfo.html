@@ -8,21 +8,85 @@
   <title>Flightinfo JSON and AJAX</title>
   <meta name="description" content="Flightinfo JSON and AJAX">
   <meta name="author" content="Nico Bijl">
-
-  <link rel="stylesheet" href="flightinfo.css">
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+<!-- Normal css -->
+<link rel="stylesheet" href="main_sub_styles.css">  
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 
 </head>
-
+    
+    <!-- Body -->
+<!-- Navigation -->
 <body>
+<nav class="navbar default navbar-fixed-top col-md-offset-0 col-md-12 col-lg-12 col-lg-offset-0">
+  <div class="container-fluid"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" > <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="navbar-brand"><img src="./img/logo_belle.png" alt="Belle AIR" style="width:150px;"> </a></div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right" style="margin-right: 50px;">
+        <li><a href="home_menu.html">Home</a> </li>
+        <li><a href="movies_genres.html">Movies</a> </li>
+        <li><a href="games.html">Games</a> </li>
+        <li class="active"><a href="flight_form.html">Flight info</a> </li>
+        <li><a href="Internet.html">Internet</a> </li>
+        <li class="dropdown"> <a href="music_genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Music <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="music_genres.html">Genres</a> </li>
+            <li><a href="music_artists.html">Artists</a> </li>
+            <li><a href="music_songs.html">Songs</a> </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- /Navigation --> 
 
-  <header>
-    <h1>JSON and AJAX</h1>
-    <button id="btn">Fetch FlightInfo</button>
-    <p>Watch tutorial: <a href="https://www.youtube.com/watch?v=rJesac0_Ftw">link</a></p>
-  </header>
+<!-- Header -->
+<header>
+  <div class="page-header col-lg-offset-0 col-lg-12">
+    <div class="row">
+      <div class="col-md-12 padding-5">
+        <div class="row">
+          <div class="col-md-4 col-lg-2"></div>
+          <div class="col-sm-12 text-center col-lg-offset-1 col-lg-3"> <img src="img/icon/menu_flight_info.png" class="img-responsive moviestitle" alt="Responsive image" style="padding-left: 1em "></div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-lg-offset-3">
+            <h1 style="color: white; text-align: right; padding-right: 2em">&nbsp;</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    
+<!--  <h1>JSON and AJAX</h1> -->
+    
+<div class="container ">
+			          <div class="row-centered">
+				      <div class="group col-lg-12" style="margin-bottom: 20px;">
+          <h3 class="title-small"> <span>Your flight number</span></h3>
+          <p class="content-detail">To track your flight we need your flight number. </p>
+          <p class="content-detail">Please press the button below and choose your flight.</p>
+          <p class="content-detail">You can find your flightnumber on your ticket. </p>
+<button class="btn btn-danger col-lg-6 col-lg-offset-3 col-xs-11 col-xs-offset-0" id="btn">FETCH FLIGHTS</button>
+				      </div>    
+</div>
+  </div>
 
-  <div id="flight-info"></div>
+   <!-- <p>Watch tutorial: <a href="https://www.youtube.com/watch?v=rJesac0_Ftw">link</a></p> -->
+<div class="container ">
+			          <div class="row-centered">
+  <div class="panel col-sm-12 col-md-9 col-md-offset-2 col-lg-7 col-lg-offset-3" style="background-color: rgba(255,255,255,0.00);" id="flight-info"></div>
+
+ 
+ </div>
+  </div>
   <script src="flightinfo.js"></script>
 </body>
 
