@@ -57,27 +57,38 @@ th {
 /*---------- pink button -----------*/
 
 .btn-danger {
-	width: 50%;
 	height: 50px;
 	background-color: #C9309C;
 	border-radius: 0;
 }
 
 .btn-danger:hover {
-	background-color: #A01477;
+	background-color: #ffffff;
+	color: #C9309C;
+	border: none;
 }
 
 .btn-danger:active {
-	background-color: #6E4497;
+	background-color: #C9309C;
+	color: #ffffff;
+}
+
+.btn-danger:active:focus {
+	background-color: #C9309C;
+	color: #ffffff;
 }
 
 .btn-danger:visited {
-	background-color: #6E4497;
+	background-color: #C9309C;
+	color: #ffffff;
+
 }
 
 .btn-danger:focus {
-	background-color: #6E4497;
+	background-color: #C9309C;
+	color: #ffffff;
 }
+
 
 /*---------- / pink button -----------*/
 

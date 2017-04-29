@@ -21,34 +21,34 @@ btn.addEventListener("click", function() {
 function renderHTML(data) {
   //console.log(data.EnrouteResult.enroute[0].ident);
   var htmlString = "";
-  htmlString += "<table>";
+  htmlString += "<table table-resposive table-hover table-condensed>";
   htmlString += "<tr>";
   htmlString += "<th>FLIGHT NUMBER</th>";
-  htmlString += "<th>TYPE OF AIRPLANE</th>";
+  //htmlString += "<th>TYPE OF AIRPLANE</th>";
   htmlString += "<th>DEPARTURE (FILED)</th>";
-  htmlString += "<th>DEPARTURE (ACTUAL)</th>";
+  //htmlString += "<th>DEPARTURE (ACTUAL)</th>";
   htmlString += "<th>ARRIVAL (EXPECTED)</th>";
   htmlString += "<th>ORIGIN</th>";
-  htmlString += "<th>NAME</th>";
-  htmlString += "<th>CITY</th>";
+  //htmlString += "<th>NAME</th>";
+  //htmlString += "<th>CITY</th>";
   htmlString += "<th>DESTINATION</th>";
-  htmlString += "<th>NAME</th>";
-  htmlString += "<th>CITY</th>";
+  //htmlString += "<th>NAME</th>";
+  //htmlString += "<th>CITY</th>";
   htmlString += "</tr>";
 
 
   for (i = 0; i < data.EnrouteResult.enroute.length; i++) {
     htmlString += "<tr>";
     htmlString += "<td>" + data.EnrouteResult.enroute[i].ident + "</td>";
-    htmlString += "<td>" + data.EnrouteResult.enroute[i].aircrafttype + "</td>";
+    //htmlString += "<td>" + data.EnrouteResult.enroute[i].aircrafttype + "</td>";
     htmlString += "<td>" + data.EnrouteResult.enroute[i].filed_departuretime + "</td>";
-    htmlString += "<td>" + data.EnrouteResult.enroute[i].actualdeparturetime + "</td>";
+    //htmlString += "<td>" + data.EnrouteResult.enroute[i].actualdeparturetime + "</td>";
     htmlString += "<td>" + data.EnrouteResult.enroute[i].estimatedarrivaltime + "</td>";
-    htmlString += "<td>" + data.EnrouteResult.enroute[i].origin + "</td>";
-    htmlString += "<td>" + data.EnrouteResult.enroute[i].originName + "</td>";
+    //htmlString += "<td>" + data.EnrouteResult.enroute[i].origin + "</td>";
+    //htmlString += "<td>" + data.EnrouteResult.enroute[i].originName + "</td>";
     htmlString += "<td>" + data.EnrouteResult.enroute[i].originCity + "</td>";
-    htmlString += "<td>" + data.EnrouteResult.enroute[i].destination + "</td>";
-    htmlString += "<td>" + data.EnrouteResult.enroute[i].destinationName + "</td>";
+    //htmlString += "<td>" + data.EnrouteResult.enroute[i].destination + "</td>";
+    //htmlString += "<td>" + data.EnrouteResult.enroute[i].destinationName + "</td>";
     htmlString += "<td>" + data.EnrouteResult.enroute[i].destinationCity + "</td>";
     htmlString += "</tr>";
   }
