@@ -1,0 +1,143 @@
+<html>
+
+<head>
+
+
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    var fxml_url = 'http://nicobijl:0ea32a93f4389c4c347ad4fb59fb1889b9657fd1@flightxml.flightaware.com/json/FlightXML2/';
+
+
+    // When the button is clicked, fetch the details about the entered flight identity.
+    $(document).ready(function() {
+      $('#go_button_flight').click(function() {
+        $.ajax({
+          type: 'GET',
+          url: fxml_url + 'FlightInfoEx',
+          data: {
+            'ident': $('#ident_text').val(),
+            'howMany': 10,
+            'offset': 0
+          },
+          success: function(result) {
+            if (result.error) {
+              alert('Failed to fetch flight: ' + result.error);
+              return;
+            }
+            for (flight of result.FlightInfoExResult.flights) {
+              if (flight.actualdeparturetime > 0) {
+                // display some textual details about the flight.
+                $('#resultsFlight').html('Flight ' + flight.ident + ' from ' + flight.originName + ' to ' + flight.destinationName);
+              }
+            }
+          },
+          error: function(data, text) {
+            alert('Failed to fetch flight: ' + data);
+          },
+          dataType: 'jsonp',
+          jsonp: 'jsonp_callback',
+          xhrFields: {
+            withCredentials: true
+          }
+        });
+      });
+    });
+
+    // When the button is clicked, fetch all current flights for a specific Airport
+    $(document).ready(function() {
+      $('#go_button_airport').click(function() {
+        $.ajax({
+          type: 'GET',
+          url: fxml_url + 'Enroute',
+          data: {
+            'airport': $('#airport_text').val(),
+            'howMany': 10,
+            'offset': 0
+          },
+          success: function(result) {
+            if (result.error) {
+              alert('Failed to fetch flights: ' + result.error);
+              return;
+            }
+
+            renderHTML(result);
+
+          },
+          error: function(data, text) {
+            alert('Failed to fetch flight: ' + data);
+          },
+          dataType: 'jsonp',
+          jsonp: 'jsonp_callback',
+          xhrFields: {
+            withCredentials: true
+          }
+        });
+      });
+    });
+
+    function renderHTML(data) {
+      //console.log(data.EnrouteResult);
+      var htmlString = "";
+      htmlString += "<table>";
+      htmlString += "<tr>";
+      htmlString += "<th>FLIGHT NUMBER</th>";
+      htmlString += "<th>TYPE OF AIRPLANE</th>";
+      htmlString += "<th>DEPARTURE (FILED)</th>";
+      htmlString += "<th>DEPARTURE (ACTUAL)</th>";
+      htmlString += "<th>ARRIVAL (EXPECTED)</th>";
+      htmlString += "<th>ORIGIN</th>";
+      htmlString += "<th>NAME</th>";
+      htmlString += "<th>CITY</th>";
+      htmlString += "<th>DESTINATION</th>";
+      htmlString += "<th>NAME</th>";
+      htmlString += "<th>CITY</th>";
+      htmlString += "</tr>";
+
+
+      for (i = 0; i < data.EnrouteResult.enroute.length; i++) {
+        htmlString += "<tr>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].ident + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].aircrafttype + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].filed_departuretime + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].actualdeparturetime + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].estimatedarrivaltime + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].origin + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].originName + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].originCity + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].destination + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].destinationName + "</td>";
+        htmlString += "<td>" + data.EnrouteResult.enroute[i].destinationCity + "</td>";
+        htmlString += "</tr>";
+      }
+
+      htmlString += "</table>";
+
+      var flightContainer = document.getElementById("resultsAirportTable");
+      flightContainer.insertAdjacentHTML('beforeend', htmlString);
+    }
+  </script>
+</head>
+
+<body>
+
+  <form onsubmit="return false;">
+    <p>Enter a flight ident to track:
+      <input type="text" name="ident" id="ident_text" value="UAL423" />
+      <input type="submit" id="go_button_flight" value="Go" />
+    </p>
+  </form>
+
+  <form onsubmit="return false;">
+    <p>Enter an airport to track:
+      <input type="text" name="airport" id="airport_text" value="PHNL" />
+      <input type="submit" id="go_button_airport" value="Go" />
+    </p>
+  </form>
+
+  <div id="resultsAirportTable"></div>
+  <div id="resultsFlight"></div>
+
+</body>
+
+</html>
