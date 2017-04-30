@@ -3,9 +3,7 @@ var btn = document.getElementById("btn");
 
 btn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
-  //ourRequest.open('GET', 'https://raw.githubusercontent.com/Nico-Bijl/flightinfo/master/flightinfo.json');
-  ourRequest.open('GET', 'http://flightxml.flightaware.com/json/FlightXML2/Enroute?airport=PHNL', true, 'nicobijl', '0ea32a93f4389c4c347ad4fb59fb1889b9657fd1');
-  // ourRequest.withCredentials = true;
+  ourRequest.open('GET', 'https://raw.githubusercontent.com/Nico-Bijl/flightinfo/master/flightinfo.json');
   // http://nicobijl:0ea32a93f4389c4c347ad4fb59fb1889b9657fd1@flightxml.flightaware.com/json/FlightXML2/Enroute?airport=EHAM
   // var user = "nicobijl"
   // var pass = "0ea32a93f4389c4c347ad4fb59fb1889b9657fd1"

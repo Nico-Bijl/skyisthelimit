@@ -1,24 +1,20 @@
 <!doctype html>
 
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
+<title>Flightinfo</title>
 
-  <title>Flightinfo JSON and AJAX</title>
-  <meta name="description" content="Flightinfo JSON and AJAX">
-  <meta name="author" content="Nico Bijl">
 <!-- Bootstrap -->
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <!-- Normal css -->
-<link rel="stylesheet" href="main_sub_styles.css">  
+<link rel="stylesheet" href="main_sub_styles.css">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-
 </head>
-    
-    <!-- Body -->
-<!-- Navigation -->
+
+<!-- Body -->
 <body>
+<!-- Navigation -->
 <nav class="navbar default navbar-fixed-top col-md-offset-0 col-md-12 col-lg-12 col-lg-offset-0">
   <div class="container-fluid"> 
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,30 +60,62 @@
     </div>
   </div>
 </header>
-    
+
 <!--  <h1>JSON and AJAX</h1> -->
-    
-<div class="container ">
-			          <div class="row-centered">
-				      <div class="group col-lg-12" style="margin-bottom: 20px;">
-          <h3 class="title-small"> <span>Your flight number</span></h3>
-          <p class="content-detail">To track your flight we need your flight number. </p>
-          <p class="content-detail">Please press the button below and choose your flight.</p>
-          <p class="content-detail">You can find your flightnumber on your ticket. </p>
-<button class="btn btn-danger col-lg-6 col-lg-offset-3 col-xs-11 col-xs-offset-0" id="btn">FETCH FLIGHTS</button>
-				      </div>    
+
+<div class="container">
+  <div class="row-centered" style="text-align: left;">
+    <div class="group col-md-9 col-md-offset-2 col-lg-offset-0 col-lg-12" style="margin-bottom: 20px;"> 
+      
+      <!-- flight information -->
+      <h3 class="title-small" style="text-align: center;"> <span>Your flight information</span></h3>
+      
+      <!-- from -->
+      <div class="row-centered">
+      <div class="col-md-10 col-sm-4 col-xs-6 col-centered col-lg-5 col-lg-offset-3" id="card-genre" style="background: white; padding: 20px; min-width: 200px; ">
+        <div class="card-group">
+          <div class="card col-md-4" >
+            <h2> <strong>from</strong> </h2>
+          </div>
+          <div class="card-block col-md-8 col-lg-9"> 
+            <!-- table from --> 
+            <!-- / table from --> 
+            
+          </div>
+        </div>
+      </div>
+      <!-- /from --> 
+      
+      <!-- to -->
+      
+      <div class="col-md-10 col-sm-4 col-xs-6 col-centered col-lg-5 col-lg-offset-2" id="card-genre" style="background: white; padding: 20px; min-width: 200px; ">
+        <div class="card-group">
+          <div class="card col-md-4" >
+            <h2> <strong>to</strong> </h2>
+          </div>
+          <div class="card-block col-md-8 col-lg-9"> 
+            <!-- table to --> 
+            <!-- / table to --> 
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- /to --> 
+	</div>
+<!-- FOOTER -->
+<section>
+  <div class="row">
+    <footer class="footer"  style="text-align: center;">
+      <div class="col-xs-12 col-lg-6 col-lg-offset-3" id="footer">
+        <p>Copyright © SKY is the LIMIT&lt;&lt;d</p>
+      </div>
+    </footer>
   </div>
+</section>
+<!-- / FOOTER -->
 
-   <!-- <p>Watch tutorial: <a href="https://www.youtube.com/watch?v=rJesac0_Ftw">link</a></p> -->
-<div class="container ">
-			          <div class="row-centered">
-  <div class="panel col-sm-12 col-md-9 col-md-offset-2 col-lg-7 col-lg-offset-3" style="background-color: rgba(255,255,255,0.00);" id="flight-info"></div>
-
- 
- </div>
-  </div>
-  <script src="flightinfo.js"></script>
 </body>
-
 </html>
