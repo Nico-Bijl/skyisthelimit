@@ -25,10 +25,44 @@
               alert('Failed to fetch flight: ' + result.error);
               return;
             }
+            console.log(result.FlightInfoExResult);
             for (flight of result.FlightInfoExResult.flights) {
               if (flight.actualdeparturetime > 0) {
+
                 // display some textual details about the flight.
-                $('#resultsFlight').html('Flight ' + flight.ident + ' from ' + flight.originName + ' to ' + flight.destinationName);
+                $('#resultsFlight').html(
+
+                  // Flight Number block of text next to picture plane
+                  '<div id="flightNumberBox">' +
+                  '<br>' +
+                  '<p>' + 'Flight Number: ' + flight.ident + '</p>' +
+                  '<p>' + 'Aircraft type: ' + flight.aircrafttype + '</p>' +
+                  '<p>' + 'Speed: ' + flight.filed_airspeed_kts + ' kts' + '</p>' +
+                  '<p>' + 'Altitude: ' + flight.filed_altitude + ' meter' + '</p>' +
+                  '<br>' +
+                  '</div>' +
+
+                  // From block of text below picture plane on left side
+                  '<div id="flightFromBoxLeft">' +
+                  '<br>' +
+                  '<p>' + 'From: ' + flight.originCity + '</p>' +
+                  '<p>' + 'Airport: ' + flight.origin + '</p>' +
+                  '<p>' + 'Departure (filed) : ' + flight.filed_departuretime + '</p>' +
+                  '<p>' + 'Departure (actual) : ' + flight.actualdeparturetime + '</p>' +
+                  '<br>' +
+                  '</div>' +
+
+                  // To block of text below picture plane on right side
+                  '<div id="flightFromBoxRight">' +
+                  '<br>' +
+                  '<p>' + 'To: ' + flight.destinationCity + '</p>' +
+                  '<p>' + 'Airport: ' + flight.destination + '</p>' +
+                  '<p>' + 'Arrival (expected) : ' + flight.estimatedarrivaltime + '</p>' +
+                  '<p>' + 'Landed: No' + '</p>' +
+                  '<br>' +
+                  '</div>'
+
+                );
               }
             }
           },
@@ -99,9 +133,15 @@
         htmlString += "<tr>";
         htmlString += "<td>" + data.EnrouteResult.enroute[i].ident + "</td>";
         htmlString += "<td>" + data.EnrouteResult.enroute[i].aircrafttype + "</td>";
-        htmlString += "<td>" + data.EnrouteResult.enroute[i].filed_departuretime + "</td>";
-        htmlString += "<td>" + data.EnrouteResult.enroute[i].actualdeparturetime + "</td>";
-        htmlString += "<td>" + data.EnrouteResult.enroute[i].estimatedarrivaltime + "</td>";
+        var timestamp = data.EnrouteResult.enroute[i].filed_departuretime;
+        var time = convertTimestamp(timestamp);
+        htmlString += "<td>" + time + "</td>";
+        var timestamp = data.EnrouteResult.enroute[i].actualdeparturetime;
+        var time = convertTimestamp(timestamp);
+        htmlString += "<td>" + time + "</td>";
+        var timestamp = data.EnrouteResult.enroute[i].estimatedarrivaltime;
+        var time = convertTimestamp(timestamp);
+        htmlString += "<td>" + time + "</td>";
         htmlString += "<td>" + data.EnrouteResult.enroute[i].origin + "</td>";
         htmlString += "<td>" + data.EnrouteResult.enroute[i].originName + "</td>";
         htmlString += "<td>" + data.EnrouteResult.enroute[i].originCity + "</td>";
@@ -116,6 +156,74 @@
       var flightContainer = document.getElementById("resultsAirportTable");
       flightContainer.insertAdjacentHTML('beforeend', htmlString);
     }
+
+
+    // Start: When the button is clicked, fetch the map of the entered flight identity (base64 encoding)
+    // http://nicobijl:0ea32a93f4389c4c347ad4fb59fb1889b9657fd1@flightxml.flightaware.com/json/FlightXML2/MapFlight?ident=FFT1740&mapHeight=400&mapWidth=400
+    // http://stackoverflow.com/questions/21227078/convert-base64-to-image-in-javascript-jquery
+    $(document).ready(function() {
+      $('#go_button_flightmap').click(function() {
+        $.ajax({
+          type: 'GET',
+          url: fxml_url + 'MapFlight',
+          data: {
+            'ident': $('#ident_map').val(),
+            'mapHeight': 400,
+            'mapWidth': 400
+          },
+          success: function(result) {
+            if (result.error) {
+              alert('Failed to fetch flight: ' + result.error);
+              return;
+            }
+
+            //console log for debugging
+            console.log(result.MapFlightResult);
+
+          },
+          error: function(data, text) {
+            alert('Failed to fetch flight: ' + data);
+          },
+          dataType: 'jsonp',
+          jsonp: 'jsonp_callback',
+          xhrFields: {
+            withCredentials: true
+          }
+        });
+      });
+    });
+    // End: When the button is clicked, fetch the map of the entered flight identity (base64 encoding)
+
+
+    // Start: Convert unix timestamp
+    var timestamp = 1493529000;
+
+    function convertTimestamp(timestamp) {
+      var d = new Date(timestamp * 1000), // Convert the passed timestamp to milliseconds
+        yyyy = d.getFullYear(),
+        mm = ('0' + (d.getMonth() + 1)).slice(-2), // Months are zero based. Add leading 0.
+        dd = ('0' + d.getDate()).slice(-2), // Add leading 0.
+        hh = d.getHours(),
+        h = hh,
+        min = ('0' + d.getMinutes()).slice(-2), // Add leading 0.
+        ampm = 'AM',
+        time;
+      if (hh > 12) {
+        h = hh - 12;
+        ampm = 'PM';
+      } else if (hh === 12) {
+        h = 12;
+        ampm = 'PM';
+      } else if (hh === 0) {
+        h = 12;
+      }
+      // ie: 2013-02-18, 8:35 AM
+      time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
+      //console.log(time);
+      return time;
+    }
+    convertTimestamp(timestamp);
+    // End: Convert unix timestamp
   </script>
 </head>
 
@@ -129,6 +237,13 @@
   </form>
 
   <form onsubmit="return false;">
+    <p>Enter a flight ident to generate a map:
+      <input type="text" name="ident" id="ident_map" value="UAL423" />
+      <input type="submit" id="go_button_flightmap" value="Go" />
+    </p>
+  </form>
+
+  <form onsubmit="return false;">
     <p>Enter an airport to track:
       <input type="text" name="airport" id="airport_text" value="PHNL" />
       <input type="submit" id="go_button_airport" value="Go" />
@@ -137,6 +252,9 @@
 
   <div id="resultsAirportTable"></div>
   <div id="resultsFlight"></div>
+  <div id="resultsFlightMap"></div>
+
+
 
 </body>
 
