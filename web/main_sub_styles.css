@@ -288,8 +288,32 @@ h2 {
 
 /*---------- / navigation -----------*/
 
+/*----------  flight number --------*/
 
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
 
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+	
+#resultsFlight {
+	background: white;
+	
+}
+
+#resultsFlightUnder {
+	background: url("img/FromToBalk.png");
+	background-size:contain;
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+/*---------- / flight number --------*/
 
 
 /*---------- genre cards -----------*/
