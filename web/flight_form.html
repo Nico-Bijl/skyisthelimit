@@ -42,7 +42,7 @@
                                 alert('Please insert your flight number: ' + result.error);
                                 return;
                             }
-                            console.log(result.FlightInfoExResult);
+//                            console.log(result.FlightInfoExResult);
 
                             for (flight of result.FlightInfoExResult.flights) {
                                 if (flight.actualdeparturetime > 0) {
@@ -83,7 +83,24 @@
                                     var timeactual = convertTimestamp(timestamp);
                                     var timestamp = flight.filed_departuretime;
                                     var timefiled = convertTimestamp(timestamp);
+// for pregress bar
+        var departuretime = flight.actualdeparturetime;
+        var arrivaltime = flight.estimatedarrivaltime;
+        var totaltime = flight.estimatedarrivaltime - flight.actualdeparturetime
+        var timeInMs = Date.now();
+        var timeNow = timeInMs/1000;
+        var flown =  timeNow - departuretime;
+        var flownperc =  flown/totaltime;
 
+        console.log('departure = '+ departuretime);
+        console.log('arrival = '+ arrivaltime);                            
+        console.log('now = ' + timeNow);
+        console.log('total = ' + totaltime);
+        console.log('flown = ' + flown);
+        console.log('flownpercentage = ' + flown/totaltime);
+        
+        
+        
                                     $('#flightFromBoxLeft').html(
                                             // From block of text below picture plane on left side
                                             '<div id="flightFromBoxLeft">' +
@@ -97,6 +114,9 @@
 
                                     var timestamp = flight.estimatedarrivaltime
                                     var timearrival = convertTimestamp(timestamp);
+                                   
+
+            
                                     $('#flightFromBoxRight').html(
                                             // To block of text below picture plane on right side
                                             '<div id="flightFromBoxRight">' +
@@ -109,8 +129,10 @@
                                             '</div>'
                                             )
                                             ;
+
                                 }
                             }
+                                                               // 100% value progress bar
 
                         },
                         error: function (data, text) {
@@ -220,6 +242,8 @@
             }
             convertTimestamp(timestamp);
             // End: Convert unix timestamp
+            
+            
 
 
         </script>
@@ -325,7 +349,7 @@
        <div class="col-lg-offset-1 col-lg-10" style="padding-bottom: 80px; background: white;">
 
 	    <div class=" progress" >
-                <div class="progress-bar" style="width: 65%; background:#6E4497;">
+                <div class="progress-bar" id="plane" style="width: 65%; background:#6E4497;">
                     <span></span>
                 </div>
                
