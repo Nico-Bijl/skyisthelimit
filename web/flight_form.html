@@ -19,7 +19,14 @@
 
             // When the button is clicked, fetch the details about the entered flight identity
             $(document).ready(function () {
-                $('#go_button_flight').click(function () {
+        		  $('#go_button_flight').click(function(){
+				$('#flightinformation1').toggle()
+				$('#flightinformation2').toggle()
+				$('#flightinformation3').toggle()
+			})
+        
+        
+        $('#go_button_flight').click(function () {
                     $.ajax({
                         type: 'GET',
                         url: fxml_url + 'FlightInfoEx',
@@ -284,34 +291,62 @@
             </div>
         </div>
 
-        <!--   results flight number   -->
-        <div class="container">
-            <div class="row-centered vertical-align" style="margin-top: 40px; ">
-                <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12" id="resultsFlight" > 
-                    <div id="logoleft" class=" col-lg-2 col-md-2 col-sm-6"></div>
-                    <div id="logomiddle" class=" col-lg-5 col-md-5 col-sm-6" style="top: 0px; bottom: 0px;"></div>
-                    <div id="flightnr" class=" col-lg-2 col-md-2 col-sm-6" style="text-align: right;"></div>
-                    <div id="results" class=" col-lg-2 col-md-2 col-sm-6 " style="text-align: right;"></div>
+       <!--   results flight number   -->
+<div class="container" id="flightinformation1" style="display:none;">
+       <div class="row-centered vertical-align" style="margin-top: 40px; ">
+    <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12" id="resultsFlight" > 
+		<div id="logoleft" class=" col-lg-2 col-md-2 col-sm-6"></div>
+		<div id="logomiddle" class=" col-lg-5 col-md-5 col-sm-6" style="top: 0px; bottom: 0px;"></div>
+   		<div id="flightnr" class=" col-lg-2 col-md-2 col-sm-6" style="text-align: right;"></div>
+   		<div id="results" class=" col-lg-2 col-md-2 col-sm-6 " style="text-align: right;"></div>
+     </div>
+  </div>
+    </div>
+<!-- /  results flight number   -->
+
+<!--   flight from to   -->
+           <div class="container" id="flightinformation2" style="margin-top: 40px; display:none; ">
+       <div class="row-centered" >
+
+             <div class="col-lg-offset-1 col-lg-10" id="resultsFlightUnder">   
+				 <div class=" col-lg-10" id="ToFrom"> </div>    </div>
+              <div class="col-lg-offset-1 col-lg-10" id="resultsFlight">   
+
+    <div class="col-lg-6 text-uppercase" id="flightFromBoxLeft" style="text-align: left;"> </div>
+    <div class="col-lg-6 text-uppercase" id="flightFromBoxRight" style="text-align: right; "> </div>
+	</div>
+			   </div>
+	</div>
+   
+    <div class="container" id="flightinformation3" style="padding-top: 10px; display:none; ">
+       <div class="row-centered">
+       <div class="col-lg-offset-1 col-lg-10" style="padding-bottom: 80px; background: white;">
+
+	    <div class=" progress" >
+                <div class="progress-bar" style="width: 65%; background:#6E4497;">
+                    <span></span>
                 </div>
-            </div>
-        </div>
-        <!-- /  results flight number   -->
-
-        <!--   flight from to   -->
-        <div class="container" style="margin-top: 40px;  ">
-            <div class="row-centered" >
-
-                <div class="col-lg-offset-1 col-lg-10" id="resultsFlightUnder">   
-                    <div class=" col-lg-10" id="ToFrom"> </div>    </div>
-                <div class="col-lg-offset-1 col-lg-10" id="resultsFlight">   
-
-                    <div class="col-lg-6 text-uppercase" id="flightFromBoxLeft" style="text-align: left;"> </div>
-                    <div class="col-lg-6 text-uppercase" id="flightFromBoxRight" style="text-align: right; "> </div>
+               
+                <div class="bar-step" style="left: 10%">
+                    <div class="h5">flown</div>
+                    <div class="label-txt" id="flown">1 hours 24 min</div>
+                    
                 </div>
-            </div>
-        </div>
+                <div class="bar-step" style="left: 50%">
+                    <div class="h5">total</div>
+                    <div class="label-txt" id="total">2 hours 1 min</div>
+                </div>
+                <div class="bar-step" style="left: 90%">
+                    <div class="h5">to go</div>
+                    <div class="label-txt" id="to go">37 min</div>
+                           </div>               	        </div>
 
-        <!--  / flight from to   -->
+</div>
+
+  </div>
+  </div>
+
+<!--  / flight from to   -->
 
         <!-- results flight table   -->
         <div class="container ">

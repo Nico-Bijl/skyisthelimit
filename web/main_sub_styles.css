@@ -313,6 +313,53 @@ h2 {
 	background-repeat: no-repeat;
 	background-position: bottom;
 }
+
+.progress{
+    height: 5px;
+    background: #C9309C;
+    box-shadow: none;
+    margin-top:20px;
+    overflow: visible;
+}
+
+
+.progress .progress-bar{
+    position: relative;
+}
+
+.progress .progress-bar span{
+    position: absolute;
+    right: -40px;
+   }
+
+
+
+.progress .progress-bar span:after{
+    content: "\f072";
+    font-family: fontawesome;
+    font-size: 48px;
+    color: #6E4497;
+    position: absolute;
+    top: -6px;
+    right: 6px;
+    transform: rotateZ(48deg);
+}
+
+
+.bar-step {
+    position:absolute;
+    margin-top:50px;
+	z-index:1;
+    font-size:12px;
+}
+
+.label-txt {
+    float: left;
+}
+
+
+
+
 /*---------- / flight number --------*/
 
 
