@@ -34,7 +34,7 @@
                         url: fxml_url + 'FlightInfoEx',
                         data: {
                             'ident': $('#ident_text').val(),
-                            'howMany': 10,
+                            'howMany': 3,
                             'offset': 0
                         },
                         success: function (result) {
@@ -42,10 +42,10 @@
                                 alert('Please insert your flight number: ' + result.error);
                                 return;
                             }
-//                            console.log(result.FlightInfoExResult);
+                            console.log(result.FlightInfoExResult);
 
                             for (flight of result.FlightInfoExResult.flights) {
-                                if (flight.actualdeparturetime > 0) {
+                                if (flight.actualarrivaltime == 0) {
 
 
 
@@ -84,16 +84,18 @@
                                     var timestamp = flight.filed_departuretime;
                                     var timefiled = convertTimestamp(timestamp);
 // for pregress bar
+        var identity = flight.ident;
         var departuretime = flight.actualdeparturetime;
         var arrivaltime = flight.estimatedarrivaltime;
         var totaltime = flight.estimatedarrivaltime - flight.actualdeparturetime
         var timeInMs = Date.now();
-        var timeNow = timeInMs/1000;
+        var timeNow = Math.round(timeInMs/1000);
         var flown =  timeNow - departuretime;
         var flownperc =  Math.round((flown / totaltime) * 100); //  900719925474099
         var togo = arrivaltime - timeNow; // comment nico
 ;
 
+        console.log('identy = '+ identity);
         console.log('departure = '+ departuretime);
         console.log('arrival = '+ arrivaltime);                            
         console.log('now = ' + timeNow);
@@ -213,7 +215,8 @@
 
 
                 for (i = 0; i < data.EnrouteResult.enroute.length; i++) {
-                    htmlString += "<tr>";
+                  
+            htmlString += "<tr>";
                     htmlString += "<td>" + data.EnrouteResult.enroute[i].ident + "</td>";
                     var timestamp = data.EnrouteResult.enroute[i].filed_departuretime;
                     var time = convertTimestamp(timestamp);
