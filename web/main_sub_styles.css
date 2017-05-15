@@ -30,11 +30,16 @@ background-color: #6E4497; (purple)
 /*---------- table -----------*/
 
 
+
 th {
 	background-color: #C9309C;	
 	color: #ffffff;
 	vertical-align: middle;
-	text-align: center;
+}
+
+.table-responsive tbody tr td{
+    	text-align: left;
+
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
@@ -42,14 +47,6 @@ th {
 	color: #C9309C;
 
 }
-
-.table > tbody > tr > td {
-    vertical-align: middle;
-	text-align: center;
-	font-weight: 200;
-
-}
-
 /*---------- / table -----------*/
 
 

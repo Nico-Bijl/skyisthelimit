@@ -21,14 +21,14 @@
 
             // When the button is clicked, fetch the details about the entered flight identity
             $(document).ready(function () {
-        		  $('#go_button_flight').click(function(){
-				$('#flightinformation1').toggle()
-				$('#flightinformation2').toggle()
-				$('#flightinformation3').toggle()
-			})
-        
-        
-        $('#go_button_flight').click(function () {
+                $('#go_button_flight').click(function () {
+                    $('#flightinformation1').toggle()
+                    $('#flightinformation2').toggle()
+                    $('#flightinformation3').toggle()
+                })
+
+
+                $('#go_button_flight').click(function () {
                     $.ajax({
                         type: 'GET',
                         url: fxml_url + 'FlightInfoEx',
@@ -46,8 +46,6 @@
 
                             for (flight of result.FlightInfoExResult.flights) {
                                 if (flight.actualarrivaltime == 0) {
-
-
 
                                     $('#logoleft').html(
                                             //Flight Number block of text next to picture plane
@@ -69,59 +67,57 @@
                                     $('#results').html(
                                             '<p style="color: #6E4497; font-size: 20px;">' + flight.ident + '</p>' +
                                             '<p>' + flight.aircrafttype + '</p>' +
-                                            '<p>' + flight.filed_airspeed_kts + ' km/h' + '</p>' +
-                                            '<p>' + flight.filed_altitude + ' meter' + '</p>'
+                                            '<p>' + flight.filed_airspeed_kts + ' m/h' + '</p>' +
+                                            '<p>' + flight.filed_altitude + '.000 ft' + '</p>'
                                             )
-
 
                                     $('#ToFrom').html(
                                             '<p style="height: 60px;">' + '</p>'
-                                            //From to image
                                             )
 
                                     var timestamp = flight.actualdeparturetime;
                                     var timeactual = convertTimestamp(timestamp);
                                     var timestamp = flight.filed_departuretime;
                                     var timefiled = convertTimestamp(timestamp);
-// for pregress bar
-        var identity = flight.ident;
-        var departuretime = flight.actualdeparturetime;
-        var arrivaltime = flight.estimatedarrivaltime;
-        var totaltime = flight.estimatedarrivaltime - flight.actualdeparturetime
-        var timeInMs = Date.now();
-        var timeNow = Math.round(timeInMs/1000);
-        var flown =  timeNow - departuretime;
-        var flownperc =  Math.round((flown / totaltime) * 100); //  900719925474099
-        var togo = arrivaltime - timeNow; // comment nico
-;
+                                    // progress bar, calculations flown total togo
+                                    var identity = flight.ident;
+                                    var departuretime = flight.actualdeparturetime;
+                                    var arrivaltime = flight.estimatedarrivaltime;
+                                    var totaltime = arrivaltime - departuretime;
+                                    var timeInMs = Date.now();
+                                    var timeNow = Math.round(timeInMs / 1000);
+                                    var flown = timeNow - departuretime;
+                                    var flownperc = Math.round((flown / totaltime) * 100); //  900719925474099
+                                    var togo = arrivaltime - timeNow; // comment nico
+                                    console.log('identy = ' + identity);
+                                    console.log('departure = ' + departuretime);
+                                    console.log('arrival = ' + arrivaltime);
+                                    console.log('now = ' + timeNow);
+                                    console.log('total = ' + totaltime);
+                                    console.log('flown = ' + flown);
+                                    console.log('flownpercentage = ' + flownperc);
+                if(flownperc <= 100){                    
+                document.getElementById("plane").style.width = flownperc + '%';
+            } else {
+                document.getElementById("plane").style.width = '100 ' + '%';
+            }
+                                    var hoursflowntext = Math.floor((flown) / 3600);
+                                    var hourstotaltext = Math.floor((totaltime) / 3600);
+                                    var hourstogotext = Math.floor((togo) / 3600);
 
-        console.log('identy = '+ identity);
-        console.log('departure = '+ departuretime);
-        console.log('arrival = '+ arrivaltime);                            
-        console.log('now = ' + timeNow);
-        console.log('total = ' + totaltime);
-        console.log('flown = ' + flown);
-        console.log('flownpercentage = ' + flownperc);
-        document.getElementById("plane").style.width = flownperc + '%';
-        document.getElementById("plane").style.width = flownperc + '%';
-         
-        var hoursflowntext = Math.floor((flown) / 3600);
-        var hourstotaltext = Math.floor((totaltime) / 3600);
-        var hourstogotext = Math.floor((togo) / 3600);
-        
-        var minutesflowntext = Math.floor((flown / 60)%60);
-        var minutestotaltext = Math.floor((totaltime / 60)%60);
-        var minutestogotext = Math.floor((togo / 60)%60);
-        
-        console.log('flown = ' + (flown / 60)%60);
-        console.log('total = ' + (totaltime / 60)%60);
-        console.log('togo = ' + (togo / 60)%60);
-        
-        document.getElementById("flown").innerHTML = hoursflowntext + ' hours ' + minutesflowntext + ' minutes';
-        document.getElementById("total").innerHTML = hourstotaltext + ' hours '+ minutestotaltext + ' minutes';
-        document.getElementById("togo").innerHTML = hourstogotext + ' hours '+ minutestogotext + ' minutes';
-        
-        
+                                    var minutesflowntext = Math.floor((flown / 60) % 60);
+                                    var minutestotaltext = Math.floor((totaltime / 60) % 60);
+                                    var minutestogotext = Math.floor((togo / 60) % 60);
+
+                                    console.log('flown = ' + (flown / 60) % 60);
+                                    console.log('total = ' + (totaltime / 60) % 60);
+                                    console.log('togo = ' + (togo / 60) % 60);
+
+                                    document.getElementById("flown").innerHTML = hoursflowntext + ' hours ' + minutesflowntext + ' minutes';
+                                    document.getElementById("total").innerHTML = hourstotaltext + ' hours ' + minutestotaltext + ' minutes';
+                                    document.getElementById("togo").innerHTML = hourstogotext + ' hours ' + minutestogotext + ' minutes';
+
+
                                     $('#flightFromBoxLeft').html(
                                             // From block of text below picture plane on left side
                                             '<div id="flightFromBoxLeft">' +
@@ -135,9 +131,9 @@
 
                                     var timestamp = flight.estimatedarrivaltime
                                     var timearrival = convertTimestamp(timestamp);
-                                   
 
-            
+
+
                                     $('#flightFromBoxRight').html(
                                             // To block of text below picture plane on right side
                                             '<div id="flightFromBoxRight">' +
@@ -153,7 +149,7 @@
 
                                 }
                             }
-                                                               // 100% value progress bar
+                            // 100% value progress bar
 
                         },
                         error: function (data, text) {
@@ -205,7 +201,7 @@
                 //console.log(data.EnrouteResult);
                 var htmlString = "";
                 htmlString += "<table>";
-                htmlString += "<tr>";
+                htmlString += "<tr style='height:30px;'>";
                 htmlString += "<th>FLIGHT NR</th>";
                 htmlString += "<th>DEPARTURE</th>";
                 htmlString += "<th>ARRIVAL</th>";
@@ -215,18 +211,21 @@
 
 
                 for (i = 0; i < data.EnrouteResult.enroute.length; i++) {
-                  
-            htmlString += "<tr>";
-                    htmlString += "<td>" + data.EnrouteResult.enroute[i].ident + "</td>";
+                 var timeInMs = Date.now();
+                                    var timeNow = Math.round(timeInMs / 1000);       
+            if (data.EnrouteResult.enroute[i].estimatedarrivaltime >= timeNow){
+                    htmlString += "<tr>";
+                    htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].ident + " " + "</td>";
                     var timestamp = data.EnrouteResult.enroute[i].filed_departuretime;
                     var time = convertTimestamp(timestamp);
-                    htmlString += "<td>" + time + "</td>";
+                    htmlString += "<td class='col-md-2'>" + " " + time + " " + "</td>";
                     var timestamp = data.EnrouteResult.enroute[i].estimatedarrivaltime;
                     var time = convertTimestamp(timestamp);
-                    htmlString += "<td>" + time + "</td>";
-                    htmlString += "<td>" + data.EnrouteResult.enroute[i].originCity + "</td>";
-                    htmlString += "<td>" + data.EnrouteResult.enroute[i].destinationCity + "</td>";
+                    htmlString += "<td class='col-md-2'>" + " " + time + " " + "</td>";
+                    htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].originCity + " " + "</td>";
+                    htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].destinationCity + " " + "</td>";
                     htmlString += "</tr>";
+                }
                 }
 
                 htmlString += "</table>";
@@ -263,8 +262,8 @@
             }
             convertTimestamp(timestamp);
             // End: Convert unix timestamp
-            
-            
+
+
 
 
         </script>
@@ -338,62 +337,62 @@
             </div>
         </div>
 
-       <!--   results flight number   -->
-<div class="container" id="flightinformation1" style="display:none;">
-       <div class="row-centered vertical-align" style="margin-top: 40px; ">
-    <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12" id="resultsFlight" > 
-		<div id="logoleft" class=" col-lg-2 col-md-2 col-sm-6"></div>
-		<div id="logomiddle" class=" col-lg-5 col-md-5 col-sm-6" style="top: 0px; bottom: 0px;"></div>
-   		<div id="flightnr" class=" col-lg-2 col-md-2 col-sm-6" style="text-align: right;"></div>
-   		<div id="results" class=" col-lg-2 col-md-2 col-sm-6 " style="text-align: right;"></div>
-     </div>
-  </div>
-    </div>
-<!-- /  results flight number   -->
-
-<!--   flight from to   -->
-           <div class="container" id="flightinformation2" style="margin-top: 40px; display:none; ">
-       <div class="row-centered" >
-
-             <div class="col-lg-offset-1 col-lg-10" id="resultsFlightUnder">   
-				 <div class=" col-lg-10" id="ToFrom"> </div>    </div>
-              <div class="col-lg-offset-1 col-lg-10" id="resultsFlight">   
-
-    <div class="col-lg-6 text-uppercase" id="flightFromBoxLeft" style="text-align: left;"> </div>
-    <div class="col-lg-6 text-uppercase" id="flightFromBoxRight" style="text-align: right; "> </div>
-	</div>
-			   </div>
-	</div>
-   
-    <div class="container" id="flightinformation3" style="padding-top: 10px; display:none; ">
-       <div class="row-centered">
-       <div class="col-lg-offset-1 col-lg-10" style="padding-bottom: 80px; background: white;">
-
-	    <div class=" progress" >
-                <div class="progress-bar" id="plane" style="width: 65%; background:#6E4497;">
-                    <span></span>
+        <!--   results flight number   -->
+        <div class="container" id="flightinformation1" style="display:none;">
+            <div class="row-centered vertical-align" style="margin-top: 40px; ">
+                <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12" id="resultsFlight" > 
+                    <div id="logoleft" class=" col-lg-2 col-md-2 col-sm-2"></div>
+                    <div id="logomiddle" class=" col-lg-4 col-md-4 col-sm-5" style="top: 0px; bottom: 0px;"></div>
+                    <div id="flightnr" class=" col-lg-3 col-md-3 col-sm-2" style="text-align: right;"></div>
+                    <div id="results" class=" col-lg-2 col-md-2 col-sm-2 " style="text-align: right;"></div>
                 </div>
-               
-                <div class="bar-step" style="left: 10%">
-                    <div class="h5">flown</div>
-                    <div class="label-txt" id="flown">1 hours 24 min</div>
-                    
+            </div>
+        </div>
+        <!-- /  results flight number   -->
+
+        <!--   flight from to   -->
+        <div class="container" id="flightinformation2" style="margin-top: 40px; display:none; ">
+            <div class="row-centered" >
+
+                <div class="col-lg-offset-1 col-lg-10" id="resultsFlightUnder">   
+                    <div class=" col-lg-10" id="ToFrom"> </div>    </div>
+                <div class="col-lg-offset-1 col-lg-10" id="resultsFlight">   
+
+                    <div class="col-lg-6 text-uppercase" id="flightFromBoxLeft" style="text-align: left;"> </div>
+                    <div class="col-lg-6 text-uppercase" id="flightFromBoxRight" style="text-align: right; "> </div>
                 </div>
-                <div class="bar-step" style="left: 45%">
-                    <div class="h5">total</div>
-                    <div class="label-txt" id="total">2 hours 1 min</div>
+            </div>
+        </div>
+
+        <div class="container" id="flightinformation3" style="display:none; ">
+            <div class="row-centered">
+                <div class="col-lg-offset-1 col-lg-10" style="padding-top: 0px; padding-bottom: 100px; background: white;">
+
+                    <div class=" progress" >
+                        <div class="progress-bar" id="plane" style="width: 65%; background:#6E4497;">
+                            <span></span>
+                        </div>
+
+                        <div class="bar-step" style="left: 10%">
+                            <div class="h5">flown</div>
+                            <div class="label-txt" id="flown">1 hours 24 min</div>
+
+                        </div>
+                        <div class="bar-step" style="left: 45%">
+                            <div class="h5">total</div>
+                            <div class="label-txt" id="total">2 hours 1 min</div>
+                        </div>
+                        <div class="bar-step" style="left: 80%">
+                            <div class="h5">to go</div>
+                            <div class="label-txt" id="togo">37 min</div>
+                        </div>               	        </div>
+
                 </div>
-                <div class="bar-step" style="left: 80%">
-                    <div class="h5">to go</div>
-                    <div class="label-txt" id="togo">37 min</div>
-                           </div>               	        </div>
 
-</div>
+            </div>
+        </div>
 
-  </div>
-  </div>
-
-<!--  / flight from to   -->
+        <!--  / flight from to   -->
 
         <!-- results flight table   -->
         <div class="container ">
@@ -404,13 +403,24 @@
                         <p class="col-lg-offset-0 col-lg-12" >If you don't remember your flight number you can first insert your destination to choose between flights.</p>
                         <p class="col-lg-offset-0 col-lg-12">Please enter your destination airport code: <br>
                             <br>
-                            <input type="text" name="airport" id="airport_text" value="PHNL" />
+                            <input type="text" name="airport" id="airport_text" value="AMS" />
                             <input class="btn btn-danger " type="submit" id="go_button_airport" value="Fetch flights" />
                         </p>
                         <br>
-                        <div class="row-centered col-lg-offset-0 col-lg-12 table table-hover table-responsive" id="resultsAirportTable" style="text-align: center; padding-top: 40px;"></div>
                     </div>
                 </form>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="row-centered col-lg-offset-1 col-lg-10">
+                <div class="row-centered table table-hover table-responsive" id="resultsAirportTable" 
+                    style="margin-top: 30px;">
+                         
+                </div>
+
             </div>
         </div>
         <!--  / results flight table   -->
