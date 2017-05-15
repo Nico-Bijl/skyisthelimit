@@ -42,7 +42,7 @@
                                 alert('Please insert your flight number: ' + result.error);
                                 return;
                             }
-                            console.log(result.FlightInfoExResult);
+//                            console.log(result.FlightInfoExResult);
 
                             for (flight of result.FlightInfoExResult.flights) {
                                 if (flight.actualarrivaltime == 0) {
@@ -80,7 +80,23 @@
                                     var timestamp = flight.filed_departuretime;
                                     var timefiled = convertTimestamp(timestamp);
 
-                                    // progress bar, calculations flown total togo
+                                   
+
+                                    $('#flightFromBoxLeft').html(
+                                            // From block of text below picture plane on left side
+                                            '<div id="flightFromBoxLeft">' +
+                                            '<br>' + '<br>' +
+                                            '<p style="color: #C9309C; font-weight: 100; font-size: 1.6em;">' + flight.originCity + '</p>' +
+                                            '<p>' + 'Airport: ' + flight.origin + '</p>' +
+                                            '<p>' + 'Departure (filed) : ' + timefiled + '</p>' +
+                                            '<p>' + 'Departure (actual) : ' + timeactual + '</p>' +
+                                            '<br>' +
+                                            '</div>')
+
+                                    var timestamp = flight.estimatedarrivaltime;
+                                    var timearrival = convertTimestamp(timestamp);
+
+ // progress bar, calculations flown total togo
                                     var identity = flight.ident;
                                     var departuretime = flight.filed_departuretime;
                                     var arrivaltime = flight.estimatedarrivaltime;
@@ -117,22 +133,6 @@
                                     document.getElementById("flown").innerHTML = hoursflowntext + ' hours ' + minutesflowntext + ' minutes';
                                     document.getElementById("total").innerHTML = hourstotaltext + ' hours ' + minutestotaltext + ' minutes';
                                     document.getElementById("togo").innerHTML = hourstogotext + ' hours ' + minutestogotext + ' minutes';
-
-
-                                    $('#flightFromBoxLeft').html(
-                                            // From block of text below picture plane on left side
-                                            '<div id="flightFromBoxLeft">' +
-                                            '<br>' + '<br>' +
-                                            '<p style="color: #C9309C; font-weight: 100; font-size: 1.6em;">' + flight.originCity + '</p>' +
-                                            '<p>' + 'Airport: ' + flight.origin + '</p>' +
-                                            '<p>' + 'Departure (filed) : ' + timefiled + '</p>' +
-                                            '<p>' + 'Departure (actual) : ' + timeactual + '</p>' +
-                                            '<br>' +
-                                            '</div>')
-
-                                    var timestamp = flight.estimatedarrivaltime
-                                    var timearrival = convertTimestamp(timestamp);
-
 
 
                                     $('#flightFromBoxRight').html(
@@ -214,7 +214,8 @@
                 for (i = 0; i < data.EnrouteResult.enroute.length; i++) {
                     var timeInMs = Date.now();
                     var timeNow = Math.round(timeInMs / 1000);
-                    if (data.EnrouteResult.enroute[i].estimatedarrivaltime >= timeNow) {
+                    if (data.EnrouteResult.enroute[i].estimatedarrivaltime > timeNow 
+                            && data.EnrouteResult.enroute[i].filed_departuretime < timeNow ) {
                         htmlString += "<tr>";
                         htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].ident + " " + "</td>";
                         var timestamp = data.EnrouteResult.enroute[i].filed_departuretime;
@@ -404,7 +405,7 @@
                         <p class="col-lg-offset-0 col-lg-12" >If you don't remember your flight number you can first insert your destination to choose between flights.</p>
                         <p class="col-lg-offset-0 col-lg-12">Please enter your destination airport code: <br>
                             <br>
-                            <input type="text" name="airport" id="airport_text" value="AMS" />
+                            <input type="text" name="airport" id="airport_text" value="PHNL" />
                             <input class="btn btn-danger " type="submit" id="go_button_airport" value="Fetch flights" />
                         </p>
                         <br>
