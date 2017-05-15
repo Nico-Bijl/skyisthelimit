@@ -79,16 +79,17 @@
                                     var timeactual = convertTimestamp(timestamp);
                                     var timestamp = flight.filed_departuretime;
                                     var timefiled = convertTimestamp(timestamp);
+
                                     // progress bar, calculations flown total togo
                                     var identity = flight.ident;
-                                    var departuretime = flight.actualdeparturetime;
+                                    var departuretime = flight.filed_departuretime;
                                     var arrivaltime = flight.estimatedarrivaltime;
                                     var totaltime = arrivaltime - departuretime;
                                     var timeInMs = Date.now();
                                     var timeNow = Math.round(timeInMs / 1000);
                                     var flown = timeNow - departuretime;
-                                    var flownperc = Math.round((flown / totaltime) * 100); //  900719925474099
-                                    var togo = arrivaltime - timeNow; // comment nico
+                                    var flownperc = Math.round((flown / totaltime) * 100);
+                                    var togo = arrivaltime - timeNow;
                                     console.log('identy = ' + identity);
                                     console.log('departure = ' + departuretime);
                                     console.log('arrival = ' + arrivaltime);
@@ -96,11 +97,11 @@
                                     console.log('total = ' + totaltime);
                                     console.log('flown = ' + flown);
                                     console.log('flownpercentage = ' + flownperc);
-                if(flownperc <= 100){                    
-                document.getElementById("plane").style.width = flownperc + '%';
-            } else {
-                document.getElementById("plane").style.width = '100 ' + '%';
-            }
+                                    if (flownperc <= 100) {
+                                        document.getElementById("plane").style.width = flownperc + '%';
+                                    } else {
+                                        document.getElementById("plane").style.width = '100 ' + '%';
+                                    }
                                     var hoursflowntext = Math.floor((flown) / 3600);
                                     var hourstotaltext = Math.floor((totaltime) / 3600);
                                     var hourstogotext = Math.floor((togo) / 3600);
@@ -211,21 +212,21 @@
 
 
                 for (i = 0; i < data.EnrouteResult.enroute.length; i++) {
-                 var timeInMs = Date.now();
-                                    var timeNow = Math.round(timeInMs / 1000);       
-            if (data.EnrouteResult.enroute[i].estimatedarrivaltime >= timeNow){
-                    htmlString += "<tr>";
-                    htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].ident + " " + "</td>";
-                    var timestamp = data.EnrouteResult.enroute[i].filed_departuretime;
-                    var time = convertTimestamp(timestamp);
-                    htmlString += "<td class='col-md-2'>" + " " + time + " " + "</td>";
-                    var timestamp = data.EnrouteResult.enroute[i].estimatedarrivaltime;
-                    var time = convertTimestamp(timestamp);
-                    htmlString += "<td class='col-md-2'>" + " " + time + " " + "</td>";
-                    htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].originCity + " " + "</td>";
-                    htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].destinationCity + " " + "</td>";
-                    htmlString += "</tr>";
-                }
+                    var timeInMs = Date.now();
+                    var timeNow = Math.round(timeInMs / 1000);
+                    if (data.EnrouteResult.enroute[i].estimatedarrivaltime >= timeNow) {
+                        htmlString += "<tr>";
+                        htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].ident + " " + "</td>";
+                        var timestamp = data.EnrouteResult.enroute[i].filed_departuretime;
+                        var time = convertTimestamp(timestamp);
+                        htmlString += "<td class='col-md-2'>" + " " + time + " " + "</td>";
+                        var timestamp = data.EnrouteResult.enroute[i].estimatedarrivaltime;
+                        var time = convertTimestamp(timestamp);
+                        htmlString += "<td class='col-md-2'>" + " " + time + " " + "</td>";
+                        htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].originCity + " " + "</td>";
+                        htmlString += "<td class='col-md-2'>" + " " + data.EnrouteResult.enroute[i].destinationCity + " " + "</td>";
+                        htmlString += "</tr>";
+                    }
                 }
 
                 htmlString += "</table>";
@@ -417,8 +418,8 @@
         <div class="container">
             <div class="row-centered col-lg-offset-1 col-lg-10">
                 <div class="row-centered table table-hover table-responsive" id="resultsAirportTable" 
-                    style="margin-top: 30px;">
-                         
+                     style="margin-top: 30px;">
+
                 </div>
 
             </div>
