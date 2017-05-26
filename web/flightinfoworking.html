@@ -2,7 +2,8 @@
 
 <head>
 
-
+  <!-- External style sheets does not work with AJAX -->
+  <link rel="stylesheet" href="flightinfoworking.css">
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
   <script type="text/javascript">
@@ -33,9 +34,13 @@
                 $('#resultsFlight').html(
 
                   // Flight Number block of text next to picture plane
+                  '<style>' +
+                  'p {color: green;}' +
+                  '#flightNumberBox {background: blue;}' +
+                  '</style>' +
                   '<div id="flightNumberBox">' +
                   '<br>' +
-                  '<p>' + 'Flight Number: ' + flight.ident + '</p>' +
+                  '<p style="color:blue;">' + 'Flight Number: ' + flight.ident + '</p>' +
                   '<p>' + 'Aircraft type: ' + flight.aircrafttype + '</p>' +
                   '<p>' + 'Speed: ' + flight.filed_airspeed_kts + ' kts' + '</p>' +
                   '<p>' + 'Altitude: ' + flight.filed_altitude + ' meter' + '</p>' +

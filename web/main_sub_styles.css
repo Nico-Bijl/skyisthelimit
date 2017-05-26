@@ -30,11 +30,16 @@ background-color: #6E4497; (purple)
 /*---------- table -----------*/
 
 
+
 th {
 	background-color: #C9309C;	
 	color: #ffffff;
 	vertical-align: middle;
-	text-align: center;
+}
+
+.table-responsive tbody tr td{
+    	text-align: left;
+
 }
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
@@ -42,14 +47,6 @@ th {
 	color: #C9309C;
 
 }
-
-.table > tbody > tr > td {
-    vertical-align: middle;
-	text-align: center;
-	font-weight: 200;
-
-}
-
 /*---------- / table -----------*/
 
 
@@ -288,8 +285,79 @@ h2 {
 
 /*---------- / navigation -----------*/
 
+/*----------  flight number --------*/
+
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+	
+#resultsFlight {
+	background: white;
+	
+}
+
+#resultsFlightUnder {
+	background: url("img/FromToBalk.png");
+	background-size:contain;
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+
+.progress{
+    height: 5px;
+    background: #C9309C;
+    box-shadow: none;
+    margin-top:20px;
+    overflow: visible;
+}
 
 
+.progress .progress-bar{
+    position: relative;
+}
+
+.progress .progress-bar span{
+    position: absolute;
+    right: -40px;
+   }
+
+
+
+.progress .progress-bar span:after{
+    content: "\f072";
+    font-family: fontawesome;
+    font-size: 48px;
+    color: #6E4497;
+    position: absolute;
+    top: -6px;
+    right: 6px;
+    transform: rotateZ(48deg);
+}
+
+
+.bar-step {
+    position:absolute;
+    margin-top:50px;
+	z-index:1;
+    font-size:12px;
+}
+
+.label-txt {
+    float: left;
+}
+
+
+
+
+/*---------- / flight number --------*/
 
 
 /*---------- genre cards -----------*/
